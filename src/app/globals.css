@@ -1,0 +1,798 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-hi: var(--surface-hi);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dim: var(--primary-dim);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  --container-8xl: 90rem;
+
+  --shadow-soft: 0 1px 2px oklch(0 0 0 / 0.4);
+  --shadow-card: 0 18px 40px -24px oklch(0 0 0 / 0.85);
+  --shadow-glow: 0 0 0 1px var(--primary-dim), 0 20px 60px -30px oklch(0.72 0.17 55 / 0.5);
+}
+
+:root {
+  --radius: 1rem;
+
+  --background: oklch(0.164 0.006 285);
+
+  --foreground: oklch(0.972 0.002 95);
+
+  --surface: oklch(0.213 0.006 285);
+
+  --surface-hi: oklch(0.253 0.006 285);
+  --card: oklch(0.213 0.006 285);
+  --card-foreground: oklch(0.972 0.002 95);
+  --popover: oklch(0.213 0.006 285);
+  --popover-foreground: oklch(0.972 0.002 95);
+
+  --primary: oklch(0.817 0.168 161.8);
+  --primary-foreground: oklch(0.219 0.038 167.9);
+
+  --primary-light: oklch(0.888 0.13 164);
+  --primary-dim: oklch(0.817 0.168 161.8 / 0.14);
+
+  --secondary: oklch(0.253 0.006 285);
+  --secondary-foreground: oklch(0.972 0.002 95);
+  --muted: oklch(0.253 0.006 285);
+
+  --muted-foreground: oklch(0.626 0.008 285);
+
+  --subtle-foreground: oklch(0.472 0.008 285);
+  --accent: oklch(0.253 0.006 285);
+  --accent-foreground: oklch(0.972 0.002 95);
+  --destructive: oklch(0.62 0.2 22);
+  --destructive-foreground: oklch(0.972 0.002 95);
+  --success: oklch(0.72 0.16 155);
+
+  --border: oklch(0.283 0.007 285);
+  --input: oklch(0.283 0.007 285);
+  --ring: oklch(0.817 0.168 161.8);
+}
+
+html[data-theme="light"] {
+
+  --luz: 100;
+  --mistura-luz: calc(var(--luz) * 1%);
+  --background: color-mix(in srgb, var(--base-fundo, #f5f7f6) var(--mistura-luz), #a9b3ae);
+  --foreground: #121418;
+  --surface: color-mix(in srgb, var(--base-superficie, #ffffff) var(--mistura-luz), #b7c0bb);
+  --surface-hi: color-mix(in srgb, var(--base-superficie-alta, #eef2f0) var(--mistura-luz), #a3ada8);
+  --card: color-mix(in srgb, var(--base-superficie, #ffffff) var(--mistura-luz), #b7c0bb);
+  --card-foreground: #121418;
+  --popover: color-mix(in srgb, var(--base-superficie, #ffffff) var(--mistura-luz), #b7c0bb);
+  --popover-foreground: #121418;
+
+  --primary: var(--cor-destaque, #0a8f60);
+  --primary-foreground: #ffffff;
+  --primary-light: var(--cor-destaque-forte, #06734c);
+  --primary-dim: var(--cor-destaque-suave, rgb(10 143 96 / 0.1));
+
+  --secondary: color-mix(in srgb, var(--base-superficie-alta, #eef2f0) var(--mistura-luz), #a3ada8);
+  --secondary-foreground: #121418;
+  --muted: color-mix(in srgb, var(--base-superficie-alta, #eef2f0) var(--mistura-luz), #a3ada8);
+  --muted-foreground: #525862;
+  --subtle-foreground: #737a85;
+  --accent: color-mix(in srgb, var(--base-superficie-alta, #eef2f0) var(--mistura-luz), #a3ada8);
+  --accent-foreground: #121418;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --success: #059669;
+  --border: color-mix(in srgb, var(--base-borda, #dde3e0) var(--mistura-luz), #8f9a95);
+  --input: color-mix(in srgb, var(--base-borda, #dde3e0) var(--mistura-luz), #8f9a95);
+  --ring: var(--cor-destaque, #0a8f60);
+
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.08);
+  --shadow-card: 0 18px 40px -24px rgb(0 0 0 / 0.25);
+  color-scheme: light;
+}
+
+html[data-theme="light"] .text-amber-100,
+html[data-theme="light"] .text-amber-200,
+html[data-theme="light"] .hover\:text-amber-100:hover { color: #92400e; }
+html[data-theme="light"] .text-amber-300 { color: #b45309; }
+html[data-theme="light"] .text-cyan-200,
+html[data-theme="light"] .text-cyan-300 { color: #0e7490; }
+html[data-theme="light"] .text-sky-200,
+html[data-theme="light"] .text-sky-300,
+html[data-theme="light"] .hover\:text-sky-200:hover { color: #0369a1; }
+html[data-theme="light"] .text-zinc-300 { color: #52525b; }
+html[data-theme="light"] .border-white\/5,
+html[data-theme="light"] .border-white\/10 { border-color: rgb(0 0 0 / 0.08); }
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+
+    box-sizing: border-box;
+
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  img,
+  svg,
+  video,
+  canvas,
+  iframe {
+    max-width: 100%;
+    height: auto;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  li {
+    overflow-wrap: break-word;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
+
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+@utility glow-blob {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--color-primary);
+  opacity: 0.13;
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+@utility card-surface {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    --luz-forca 0.35s ease;
+
+  &:hover {
+    border-color: color-mix(in oklab, var(--color-primary) 45%, transparent);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card);
+  }
+}
+
+.chat-scroll {
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--primary) 60%, transparent) transparent;
+  scrollbar-gutter: stable;
+}
+.chat-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.chat-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.chat-scroll::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--primary) 55%, transparent);
+  border-radius: 999px;
+}
+.chat-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+html[data-theme="light"] body {
+  background-image: var(--fundo-degrade, none);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  min-height: 100vh;
+}
+
+@property --luz-forca {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+:root {
+  --luz-rastro-forca: 0.2;
+  --luz-rastro-cor: #34d399;
+  --luz-moedas-opacidade: 0.4;
+  --luz-moedas-raio: 240px;
+  --luz-card-forca: 8%;
+  --luz-card-tamanho: 380px;
+  --luz-borda-opacidade: 0.55;
+  --luz-moedas-imagem: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22260%22%20height%3D%22260%22%20viewBox%3D%220%200%20260%20260%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%2334d399%22%20stroke-width%3D%221.35%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20transform%3D%22translate%2838%2040%29%20rotate%28-8%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cellipse%20cx%3D%2211.5%22%20cy%3D%2213%22%20rx%3D%228%22%20ry%3D%225.8%22/%3E%3Cpath%20d%3D%22M19.2%2011.2h1.6a.9.9%200%200%201%20.9.9v1.8a.9.9%200%200%201-.9.9h-1.6%22/%3E%3Cpath%20d%3D%22M8%2018v2.6M15%2018v2.6%22/%3E%3Cpath%20d%3D%22M8.2%207.8%209.6%204.6l2.6%202.6%22/%3E%3Cpath%20d%3D%22M9.8%209.6h3.6%22/%3E%3Cpath%20d%3D%22M3.6%2012.2c-1.4-.2-1.9-1.6-1-2.6%22/%3E%3Cpath%20d%3D%22M16.4%2010.9h.01%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28132%2034%29%20rotate%286%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M3%203v18h18%22/%3E%3Cpath%20d%3D%22m7%2015%204-4%203%203%206-7%22/%3E%3Cpath%20d%3D%22M15.5%207H20v4.5%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28226%2052%29%20rotate%28-10%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%223%22%20y%3D%226%22%20width%3D%2218%22%20height%3D%2213%22%20rx%3D%222.2%22/%3E%3Cpath%20d%3D%22M3%209.5h12.5a2%202%200%200%200%202-2V5.2a1%201%200%200%200-1.3-1L5%206%22/%3E%3Crect%20x%3D%2214%22%20y%3D%2211%22%20width%3D%227%22%20height%3D%225%22%20rx%3D%221.6%22/%3E%3Cpath%20d%3D%22M17.2%2013.5h.01%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2882%20124%29%20rotate%288%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%229%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%225.4%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%221.8%22/%3E%3Cpath%20d%3D%22m13.3%2010.7%206-6%22/%3E%3Cpath%20d%3D%22M16.6%204.4h2.9v2.9%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28180%20128%29%20rotate%28-6%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%225%22%20y%3D%222.5%22%20width%3D%2214%22%20height%3D%2219%22%20rx%3D%222%22/%3E%3Crect%20x%3D%228%22%20y%3D%225.5%22%20width%3D%228%22%20height%3D%223.6%22%20rx%3D%22.6%22/%3E%3Cpath%20d%3D%22M8.8%2012.6h.01M12%2012.6h.01M15.2%2012.6h.01M8.8%2015.6h.01M12%2015.6h.01M15.2%2015.6h.01M8.8%2018.6h.01M12%2018.6h.01M15.2%2018.6h.01%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2830%20214%29%20rotate%28-4%29%20scale%281.15%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M3.5%2018V6h4.6a3.4%203.4%200%200%201%200%206.8H3.5M7.4%2012.8l4.2%205.2%22/%3E%3Cpath%20d%3D%22M20.4%208.6c-.5-1.3-1.7-2-3.1-2-1.8%200-3%201-3%202.3%200%203.3%206.4%201.6%206.4%205.1%200%201.4-1.3%202.5-3.2%202.5-1.5%200-2.8-.8-3.4-2.1M17.2%204.6v14.8%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28128%20218%29%20rotate%285%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M12%206.5C9.6%204.9%206.3%204.6%202.5%205.3v13.4c3.8-.7%207.1-.4%209.5%201.2%202.4-1.6%205.7-1.9%209.5-1.2V5.3c-3.8-.7-7.1-.4-9.5%201.2Z%22/%3E%3Cpath%20d%3D%22M12%206.5v13.4%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28230%20212%29%20rotate%2810%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%225%22%20y%3D%222.5%22%20width%3D%2214%22%20height%3D%2219%22%20rx%3D%221.6%22/%3E%3Cpath%20d%3D%22M8%202.5v19%22/%3E%3Ccircle%20cx%3D%2213.5%22%20cy%3D%229.2%22%20r%3D%222.6%22/%3E%3Cpath%20d%3D%22M10.8%2015h5.4M10.8%2018h3.6%22/%3E%3C/g%3E%3Cpath%20transform%3D%22translate%2884%2062%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28182%2084%29%20scale%280.8%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2830%20128%29%20scale%280.9%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28232%20128%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28180%20182%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2884%20182%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3C/g%3E%3C/svg%3E");
+}
+
+html[data-theme="light"] {
+  --luz-rastro-forca: 0.18;
+  --luz-rastro-cor: #0a8f60;
+  --luz-moedas-opacidade: 0.33;
+  --luz-card-forca: 6%;
+  --luz-borda-opacidade: 0.45;
+  --luz-moedas-imagem: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22260%22%20height%3D%22260%22%20viewBox%3D%220%200%20260%20260%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%230a8f60%22%20stroke-width%3D%221.35%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20transform%3D%22translate%2838%2040%29%20rotate%28-8%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cellipse%20cx%3D%2211.5%22%20cy%3D%2213%22%20rx%3D%228%22%20ry%3D%225.8%22/%3E%3Cpath%20d%3D%22M19.2%2011.2h1.6a.9.9%200%200%201%20.9.9v1.8a.9.9%200%200%201-.9.9h-1.6%22/%3E%3Cpath%20d%3D%22M8%2018v2.6M15%2018v2.6%22/%3E%3Cpath%20d%3D%22M8.2%207.8%209.6%204.6l2.6%202.6%22/%3E%3Cpath%20d%3D%22M9.8%209.6h3.6%22/%3E%3Cpath%20d%3D%22M3.6%2012.2c-1.4-.2-1.9-1.6-1-2.6%22/%3E%3Cpath%20d%3D%22M16.4%2010.9h.01%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28132%2034%29%20rotate%286%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M3%203v18h18%22/%3E%3Cpath%20d%3D%22m7%2015%204-4%203%203%206-7%22/%3E%3Cpath%20d%3D%22M15.5%207H20v4.5%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28226%2052%29%20rotate%28-10%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%223%22%20y%3D%226%22%20width%3D%2218%22%20height%3D%2213%22%20rx%3D%222.2%22/%3E%3Cpath%20d%3D%22M3%209.5h12.5a2%202%200%200%200%202-2V5.2a1%201%200%200%200-1.3-1L5%206%22/%3E%3Crect%20x%3D%2214%22%20y%3D%2211%22%20width%3D%227%22%20height%3D%225%22%20rx%3D%221.6%22/%3E%3Cpath%20d%3D%22M17.2%2013.5h.01%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2882%20124%29%20rotate%288%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%229%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%225.4%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%221.8%22/%3E%3Cpath%20d%3D%22m13.3%2010.7%206-6%22/%3E%3Cpath%20d%3D%22M16.6%204.4h2.9v2.9%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28180%20128%29%20rotate%28-6%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%225%22%20y%3D%222.5%22%20width%3D%2214%22%20height%3D%2219%22%20rx%3D%222%22/%3E%3Crect%20x%3D%228%22%20y%3D%225.5%22%20width%3D%228%22%20height%3D%223.6%22%20rx%3D%22.6%22/%3E%3Cpath%20d%3D%22M8.8%2012.6h.01M12%2012.6h.01M15.2%2012.6h.01M8.8%2015.6h.01M12%2015.6h.01M15.2%2015.6h.01M8.8%2018.6h.01M12%2018.6h.01M15.2%2018.6h.01%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2830%20214%29%20rotate%28-4%29%20scale%281.15%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M3.5%2018V6h4.6a3.4%203.4%200%200%201%200%206.8H3.5M7.4%2012.8l4.2%205.2%22/%3E%3Cpath%20d%3D%22M20.4%208.6c-.5-1.3-1.7-2-3.1-2-1.8%200-3%201-3%202.3%200%203.3%206.4%201.6%206.4%205.1%200%201.4-1.3%202.5-3.2%202.5-1.5%200-2.8-.8-3.4-2.1M17.2%204.6v14.8%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28128%20218%29%20rotate%285%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M12%206.5C9.6%204.9%206.3%204.6%202.5%205.3v13.4c3.8-.7%207.1-.4%209.5%201.2%202.4-1.6%205.7-1.9%209.5-1.2V5.3c-3.8-.7-7.1-.4-9.5%201.2Z%22/%3E%3Cpath%20d%3D%22M12%206.5v13.4%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28230%20212%29%20rotate%2810%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%225%22%20y%3D%222.5%22%20width%3D%2214%22%20height%3D%2219%22%20rx%3D%221.6%22/%3E%3Cpath%20d%3D%22M8%202.5v19%22/%3E%3Ccircle%20cx%3D%2213.5%22%20cy%3D%229.2%22%20r%3D%222.6%22/%3E%3Cpath%20d%3D%22M10.8%2015h5.4M10.8%2018h3.6%22/%3E%3C/g%3E%3Cpath%20transform%3D%22translate%2884%2062%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28182%2084%29%20scale%280.8%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2830%20128%29%20scale%280.9%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28232%20128%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28180%20182%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2884%20182%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.luz-moedas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background-image: var(--luz-moedas-imagem);
+  background-size: 260px 260px;
+  background-attachment: fixed;
+  -webkit-mask-image: radial-gradient(
+    var(--luz-moedas-raio) circle at var(--mx, -999px) var(--my, -999px),
+    #000 0%,
+    rgb(0 0 0 / 0.35) 45%,
+    transparent 75%
+  );
+  mask-image: radial-gradient(
+    var(--luz-moedas-raio) circle at var(--mx, -999px) var(--my, -999px),
+    #000 0%,
+    rgb(0 0 0 / 0.35) 45%,
+    transparent 75%
+  );
+}
+
+html.luz-visivel .luz-moedas {
+  opacity: var(--luz-moedas-opacidade);
+}
+
+.luz-rastro {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+@layer components {
+  html.luz-cursor
+    :is(
+      .card-surface,
+      [data-luz],
+      .bg-surface.border[class*="rounded-2xl"],
+      .bg-surface.border[class*="rounded-3xl"],
+      .bg-card.border[class*="rounded-2xl"],
+      .bg-card.border[class*="rounded-3xl"]
+    ) {
+    background-image: radial-gradient(
+      var(--luz-card-tamanho) circle at var(--lx, -999px) var(--ly, -999px),
+      color-mix(in oklab, var(--color-primary) var(--luz-forca), transparent),
+      transparent 70%
+    );
+    transition:
+      --luz-forca 0.35s ease,
+      border-color 0.25s ease,
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      background: radial-gradient(
+        calc(var(--luz-card-tamanho) * 0.6) circle at calc(var(--lx, -999px) + 1px)
+          calc(var(--ly, -999px) + 1px),
+        var(--color-primary),
+        transparent 70%
+      );
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+
+    &:hover {
+      --luz-forca: var(--luz-card-forca);
+    }
+
+    &:hover::after {
+      opacity: var(--luz-borda-opacidade);
+    }
+  }
+}
+
+
+
+
+:root {
+  --fundo-grade-cor: color-mix(in oklab, var(--foreground) 5%, transparent);
+  --fundo-grade-passo: 32px;
+  --fundo-aurora-forca: 14%;
+  --fundo-ruido-opacidade: 0.05;
+  --fundo-ruido-imagem: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22180%22%20height%3D%22180%22%3E%3Cfilter%20id%3D%22r%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.85%22%20numOctaves%3D%223%22%20stitchTiles%3D%22stitch%22/%3E%3CfeColorMatrix%20values%3D%220%200%200%200%201%20%200%200%200%200%201%20%200%200%200%200%201%20%200%200%200%20.55%200%22/%3E%3C/filter%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20filter%3D%22url%28%23r%29%22/%3E%3C/svg%3E");
+  --curva-opacidade: 0.75;
+}
+
+html[data-theme="light"] {
+  --fundo-grade-cor: color-mix(in oklab, var(--foreground) 6%, transparent);
+  --fundo-aurora-forca: 10%;
+  --fundo-ruido-opacidade: 0.06;
+  --fundo-ruido-imagem: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22180%22%20height%3D%22180%22%3E%3Cfilter%20id%3D%22r%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.85%22%20numOctaves%3D%223%22%20stitchTiles%3D%22stitch%22/%3E%3CfeColorMatrix%20values%3D%220%200%200%200%200%20%200%200%200%200%200%20%200%200%200%200%200%20%200%200%200%20.55%200%22/%3E%3C/filter%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20filter%3D%22url%28%23r%29%22/%3E%3C/svg%3E");
+  --curva-opacidade: 0.6;
+}
+
+.fundo-ambiente {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.fundo-aurora {
+  position: absolute;
+  width: 70vmax;
+  height: 70vmax;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in oklab, var(--primary) var(--fundo-aurora-forca), transparent),
+    transparent
+  );
+  will-change: transform;
+}
+
+.fundo-aurora-1 {
+  top: -38vmax;
+  left: -22vmax;
+  animation: aurora-1 38s ease-in-out infinite alternate;
+}
+
+.fundo-aurora-2 {
+  bottom: -42vmax;
+  right: -26vmax;
+  animation: aurora-2 46s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-1 {
+  to {
+    transform: translate(14vmax, 8vmax) scale(1.12);
+  }
+}
+
+@keyframes aurora-2 {
+  to {
+    transform: translate(-12vmax, -10vmax) scale(1.08);
+  }
+}
+
+.fundo-grade {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--fundo-grade-cor) 1px, transparent 1px),
+    linear-gradient(90deg, var(--fundo-grade-cor) 1px, transparent 1px);
+  background-size: var(--fundo-grade-passo) var(--fundo-grade-passo);
+  background-position: -1px -1px;
+  -webkit-mask-image: radial-gradient(ellipse 120% 85% at 50% 0%, #000 20%, transparent 80%);
+  mask-image: radial-gradient(ellipse 120% 85% at 50% 0%, #000 20%, transparent 80%);
+}
+
+.fundo-ruido {
+  position: absolute;
+  inset: 0;
+  background-image: var(--fundo-ruido-imagem);
+  background-size: 180px 180px;
+  opacity: var(--fundo-ruido-opacidade);
+}
+
+.curva-crescimento {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: min(100%, 72rem);
+  height: 72%;
+  pointer-events: none;
+  opacity: var(--curva-opacidade);
+}
+
+.curva-linha {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: curva-desenhar 2.4s cubic-bezier(0.65, 0, 0.35, 1) 0.2s forwards;
+}
+
+.curva-area,
+.curva-ponto {
+  opacity: 0;
+  animation: curva-aparecer 1s ease 1.6s forwards;
+}
+
+@keyframes curva-desenhar {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes curva-aparecer {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .curva-crescimento {
+    height: 45%;
+    opacity: calc(var(--curva-opacidade) * 0.6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fundo-aurora {
+    animation: none;
+  }
+
+  .curva-linha {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  .curva-area,
+  .curva-ponto {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+
+body {
+  transition: background-color 0.4s ease;
+}
+
+html:not([data-theme="light"])[data-trilha="azul"] {
+  --background: oklch(0.158 0.016 258);
+  --surface: oklch(0.205 0.02 258);
+  --surface-hi: oklch(0.248 0.024 258);
+  --card: oklch(0.205 0.02 258);
+  --popover: oklch(0.205 0.02 258);
+  --secondary: oklch(0.248 0.024 258);
+  --muted: oklch(0.248 0.024 258);
+  --accent: oklch(0.248 0.024 258);
+  --muted-foreground: oklch(0.66 0.02 258);
+  --subtle-foreground: oklch(0.5 0.02 258);
+  --border: oklch(0.29 0.03 258);
+  --input: oklch(0.29 0.03 258);
+  --primary: oklch(0.72 0.15 252);
+  --primary-foreground: oklch(0.2 0.05 260);
+  --primary-light: oklch(0.82 0.11 252);
+  --primary-dim: color-mix(in oklab, oklch(0.72 0.15 252) 14%, transparent);
+  --ring: oklch(0.72 0.15 252);
+  --luz-rastro-cor: #60a5fa;
+  --luz-moedas-imagem: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22260%22%20height%3D%22260%22%20viewBox%3D%220%200%20260%20260%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%2360a5fa%22%20stroke-width%3D%221.35%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20transform%3D%22translate%2838%2040%29%20rotate%28-8%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%225%22%20y%3D%222.5%22%20width%3D%2214%22%20height%3D%2219%22%20rx%3D%222%22/%3E%3Crect%20x%3D%228%22%20y%3D%225.5%22%20width%3D%228%22%20height%3D%223.6%22%20rx%3D%22.6%22/%3E%3Cpath%20d%3D%22M8.8%2012.6h.01M12%2012.6h.01M15.2%2012.6h.01M8.8%2015.6h.01M12%2015.6h.01M15.2%2015.6h.01M8.8%2018.6h.01M12%2018.6h.01M15.2%2018.6h.01%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28132%2034%29%20rotate%286%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M6%202.5h12v19l-2-1.4-2%201.4-2-1.4-2%201.4-2-1.4-2%201.4z%22/%3E%3Cpath%20d%3D%22M9%207.5h6M9%2011h6M9%2014.5h3.5%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28226%2052%29%20rotate%28-10%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%229%22/%3E%3Cpath%20d%3D%22M12%203v9h9%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2882%20124%29%20rotate%288%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%223%22%20y%3D%226%22%20width%3D%2218%22%20height%3D%2213%22%20rx%3D%222.2%22/%3E%3Cpath%20d%3D%22M3%209.5h12.5a2%202%200%200%200%202-2V5.2a1%201%200%200%200-1.3-1L5%206%22/%3E%3Crect%20x%3D%2214%22%20y%3D%2211%22%20width%3D%227%22%20height%3D%225%22%20rx%3D%221.6%22/%3E%3Cpath%20d%3D%22M17.2%2013.5h.01%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28180%20128%29%20rotate%28-6%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%224%22%20y%3D%223%22%20width%3D%2216%22%20height%3D%2218%22%20rx%3D%222%22/%3E%3Cpath%20d%3D%22m7.8%208%201.4%201.4L11.8%207M14%208.4h3M7.8%2013l1.4%201.4%202.6-2.4M14%2013.4h3M8%2018h8%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2830%20214%29%20rotate%28-4%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M3.5%2018V6h4.6a3.4%203.4%200%200%201%200%206.8H3.5M7.4%2012.8l4.2%205.2%22/%3E%3Cpath%20d%3D%22M20.4%208.6c-.5-1.3-1.7-2-3.1-2-1.8%200-3%201-3%202.3%200%203.3%206.4%201.6%206.4%205.1%200%201.4-1.3%202.5-3.2%202.5-1.5%200-2.8-.8-3.4-2.1M17.2%204.6v14.8%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28128%20218%29%20rotate%285%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%225%22%20y%3D%222.5%22%20width%3D%2214%22%20height%3D%2219%22%20rx%3D%222%22/%3E%3Crect%20x%3D%228%22%20y%3D%225.5%22%20width%3D%228%22%20height%3D%223.6%22%20rx%3D%22.6%22/%3E%3Cpath%20d%3D%22M8.8%2012.6h.01M12%2012.6h.01M15.2%2012.6h.01M8.8%2015.6h.01M12%2015.6h.01M15.2%2015.6h.01M8.8%2018.6h.01M12%2018.6h.01M15.2%2018.6h.01%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28230%20212%29%20rotate%2810%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%229%22/%3E%3Cpath%20d%3D%22M12%203v9h9%22/%3E%3C/g%3E%3Cpath%20transform%3D%22translate%2884%2062%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28182%2084%29%20scale%280.8%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2830%20128%29%20scale%280.9%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28232%20128%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28180%20182%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2884%20182%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3C/g%3E%3C/svg%3E");
+}
+
+html[data-theme="light"][data-trilha="azul"] {
+  --base-fundo: color-mix(in srgb, #ffffff 93%, #2563eb);
+  --base-superficie: #ffffff;
+  --base-superficie-alta: color-mix(in srgb, #ffffff 89%, #2563eb);
+  --base-borda: color-mix(in srgb, #ffffff 80%, #2563eb);
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --primary-light: #1d4ed8;
+  --primary-dim: color-mix(in srgb, #2563eb 10%, transparent);
+  --ring: #2563eb;
+  --luz-rastro-cor: #2563eb;
+  --luz-moedas-imagem: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22260%22%20height%3D%22260%22%20viewBox%3D%220%200%20260%20260%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%232563eb%22%20stroke-width%3D%221.35%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20transform%3D%22translate%2838%2040%29%20rotate%28-8%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%225%22%20y%3D%222.5%22%20width%3D%2214%22%20height%3D%2219%22%20rx%3D%222%22/%3E%3Crect%20x%3D%228%22%20y%3D%225.5%22%20width%3D%228%22%20height%3D%223.6%22%20rx%3D%22.6%22/%3E%3Cpath%20d%3D%22M8.8%2012.6h.01M12%2012.6h.01M15.2%2012.6h.01M8.8%2015.6h.01M12%2015.6h.01M15.2%2015.6h.01M8.8%2018.6h.01M12%2018.6h.01M15.2%2018.6h.01%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28132%2034%29%20rotate%286%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M6%202.5h12v19l-2-1.4-2%201.4-2-1.4-2%201.4-2-1.4-2%201.4z%22/%3E%3Cpath%20d%3D%22M9%207.5h6M9%2011h6M9%2014.5h3.5%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28226%2052%29%20rotate%28-10%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%229%22/%3E%3Cpath%20d%3D%22M12%203v9h9%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2882%20124%29%20rotate%288%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%223%22%20y%3D%226%22%20width%3D%2218%22%20height%3D%2213%22%20rx%3D%222.2%22/%3E%3Cpath%20d%3D%22M3%209.5h12.5a2%202%200%200%200%202-2V5.2a1%201%200%200%200-1.3-1L5%206%22/%3E%3Crect%20x%3D%2214%22%20y%3D%2211%22%20width%3D%227%22%20height%3D%225%22%20rx%3D%221.6%22/%3E%3Cpath%20d%3D%22M17.2%2013.5h.01%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28180%20128%29%20rotate%28-6%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%224%22%20y%3D%223%22%20width%3D%2216%22%20height%3D%2218%22%20rx%3D%222%22/%3E%3Cpath%20d%3D%22m7.8%208%201.4%201.4L11.8%207M14%208.4h3M7.8%2013l1.4%201.4%202.6-2.4M14%2013.4h3M8%2018h8%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2830%20214%29%20rotate%28-4%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M3.5%2018V6h4.6a3.4%203.4%200%200%201%200%206.8H3.5M7.4%2012.8l4.2%205.2%22/%3E%3Cpath%20d%3D%22M20.4%208.6c-.5-1.3-1.7-2-3.1-2-1.8%200-3%201-3%202.3%200%203.3%206.4%201.6%206.4%205.1%200%201.4-1.3%202.5-3.2%202.5-1.5%200-2.8-.8-3.4-2.1M17.2%204.6v14.8%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28128%20218%29%20rotate%285%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%225%22%20y%3D%222.5%22%20width%3D%2214%22%20height%3D%2219%22%20rx%3D%222%22/%3E%3Crect%20x%3D%228%22%20y%3D%225.5%22%20width%3D%228%22%20height%3D%223.6%22%20rx%3D%22.6%22/%3E%3Cpath%20d%3D%22M8.8%2012.6h.01M12%2012.6h.01M15.2%2012.6h.01M8.8%2015.6h.01M12%2015.6h.01M15.2%2015.6h.01M8.8%2018.6h.01M12%2018.6h.01M15.2%2018.6h.01%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28230%20212%29%20rotate%2810%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%229%22/%3E%3Cpath%20d%3D%22M12%203v9h9%22/%3E%3C/g%3E%3Cpath%20transform%3D%22translate%2884%2062%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28182%2084%29%20scale%280.8%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2830%20128%29%20scale%280.9%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28232%20128%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28180%20182%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2884%20182%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3C/g%3E%3C/svg%3E");
+}
+
+html:not([data-theme="light"])[data-trilha="ambar"] {
+  --background: oklch(0.158 0.016 75);
+  --surface: oklch(0.205 0.02 75);
+  --surface-hi: oklch(0.248 0.024 75);
+  --card: oklch(0.205 0.02 75);
+  --popover: oklch(0.205 0.02 75);
+  --secondary: oklch(0.248 0.024 75);
+  --muted: oklch(0.248 0.024 75);
+  --accent: oklch(0.248 0.024 75);
+  --muted-foreground: oklch(0.66 0.02 75);
+  --subtle-foreground: oklch(0.5 0.02 75);
+  --border: oklch(0.29 0.03 75);
+  --input: oklch(0.29 0.03 75);
+  --primary: oklch(0.83 0.15 82);
+  --primary-foreground: oklch(0.25 0.06 70);
+  --primary-light: oklch(0.9 0.11 88);
+  --primary-dim: color-mix(in oklab, oklch(0.83 0.15 82) 14%, transparent);
+  --ring: oklch(0.83 0.15 82);
+  --luz-rastro-cor: #fbbf24;
+  --luz-moedas-imagem: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22260%22%20height%3D%22260%22%20viewBox%3D%220%200%20260%20260%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23fbbf24%22%20stroke-width%3D%221.35%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20transform%3D%22translate%2838%2040%29%20rotate%28-8%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%222.5%22%20y%3D%225.5%22%20width%3D%2219%22%20height%3D%2213%22%20rx%3D%222.2%22/%3E%3Cpath%20d%3D%22M2.5%209.5h19M6%2015h4%22/%3E%3Crect%20x%3D%2214%22%20y%3D%2213%22%20width%3D%224%22%20height%3D%223%22%20rx%3D%22.6%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28132%2034%29%20rotate%286%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M6%202.5h12v19l-2-1.4-2%201.4-2-1.4-2%201.4-2-1.4-2%201.4z%22/%3E%3Cpath%20d%3D%22m9.5%2013.5%205-5%22/%3E%3Ccircle%20cx%3D%229.8%22%20cy%3D%228.8%22%20r%3D%22.9%22/%3E%3Ccircle%20cx%3D%2214.2%22%20cy%3D%2213.2%22%20r%3D%22.9%22/%3E%3Cpath%20d%3D%22M9%2017h6%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28226%2052%29%20rotate%28-10%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%223.5%22%20y%3D%225%22%20width%3D%2217%22%20height%3D%2216%22%20rx%3D%222%22/%3E%3Cpath%20d%3D%22M3.5%209.5h17M8%203v4M16%203v4%22/%3E%3Cpath%20d%3D%22m9%2015%202%202%204-4%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2882%20124%29%20rotate%288%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M19%205%205%2019%22/%3E%3Ccircle%20cx%3D%227%22%20cy%3D%227%22%20r%3D%222.5%22/%3E%3Ccircle%20cx%3D%2217%22%20cy%3D%2217%22%20r%3D%222.5%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28180%20128%29%20rotate%28-6%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%228.5%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%226%22%20stroke-opacity%3D%22.5%22/%3E%3Cpath%20d%3D%22M14%2010c-.4-.8-1.1-1.2-2-1.2-1.2%200-2%20.6-2%201.5%200%202.2%204.2%201%204.2%203.3%200%20.9-.9%201.6-2.2%201.6-1%200-1.8-.5-2.2-1.3M12%207.6v8.8%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2830%20214%29%20rotate%28-4%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M12%202.8%2019.5%205.6v5.6c0%204.6-3.2%208.4-7.5%2010-4.3-1.6-7.5-5.4-7.5-10V5.6z%22/%3E%3Cpath%20d%3D%22m8.8%2012%202.2%202.2%204.4-4.4%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28128%20218%29%20rotate%285%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%222.5%22%20y%3D%225.5%22%20width%3D%2219%22%20height%3D%2213%22%20rx%3D%222.2%22/%3E%3Cpath%20d%3D%22M2.5%209.5h19M6%2015h4%22/%3E%3Crect%20x%3D%2214%22%20y%3D%2213%22%20width%3D%224%22%20height%3D%223%22%20rx%3D%22.6%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28230%20212%29%20rotate%2810%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%223.5%22%20y%3D%225%22%20width%3D%2217%22%20height%3D%2216%22%20rx%3D%222%22/%3E%3Cpath%20d%3D%22M3.5%209.5h17M8%203v4M16%203v4%22/%3E%3Cpath%20d%3D%22m9%2015%202%202%204-4%22/%3E%3C/g%3E%3Cpath%20transform%3D%22translate%2884%2062%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28182%2084%29%20scale%280.8%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2830%20128%29%20scale%280.9%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28232%20128%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28180%20182%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2884%20182%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3C/g%3E%3C/svg%3E");
+}
+
+html[data-theme="light"][data-trilha="ambar"] {
+  --base-fundo: color-mix(in srgb, #ffffff 93%, #b45309);
+  --base-superficie: #ffffff;
+  --base-superficie-alta: color-mix(in srgb, #ffffff 89%, #b45309);
+  --base-borda: color-mix(in srgb, #ffffff 80%, #b45309);
+  --primary: #b45309;
+  --primary-foreground: #ffffff;
+  --primary-light: #92400e;
+  --primary-dim: color-mix(in srgb, #b45309 10%, transparent);
+  --ring: #b45309;
+  --luz-rastro-cor: #b45309;
+  --luz-moedas-imagem: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22260%22%20height%3D%22260%22%20viewBox%3D%220%200%20260%20260%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23b45309%22%20stroke-width%3D%221.35%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20transform%3D%22translate%2838%2040%29%20rotate%28-8%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%222.5%22%20y%3D%225.5%22%20width%3D%2219%22%20height%3D%2213%22%20rx%3D%222.2%22/%3E%3Cpath%20d%3D%22M2.5%209.5h19M6%2015h4%22/%3E%3Crect%20x%3D%2214%22%20y%3D%2213%22%20width%3D%224%22%20height%3D%223%22%20rx%3D%22.6%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28132%2034%29%20rotate%286%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M6%202.5h12v19l-2-1.4-2%201.4-2-1.4-2%201.4-2-1.4-2%201.4z%22/%3E%3Cpath%20d%3D%22m9.5%2013.5%205-5%22/%3E%3Ccircle%20cx%3D%229.8%22%20cy%3D%228.8%22%20r%3D%22.9%22/%3E%3Ccircle%20cx%3D%2214.2%22%20cy%3D%2213.2%22%20r%3D%22.9%22/%3E%3Cpath%20d%3D%22M9%2017h6%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28226%2052%29%20rotate%28-10%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%223.5%22%20y%3D%225%22%20width%3D%2217%22%20height%3D%2216%22%20rx%3D%222%22/%3E%3Cpath%20d%3D%22M3.5%209.5h17M8%203v4M16%203v4%22/%3E%3Cpath%20d%3D%22m9%2015%202%202%204-4%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2882%20124%29%20rotate%288%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M19%205%205%2019%22/%3E%3Ccircle%20cx%3D%227%22%20cy%3D%227%22%20r%3D%222.5%22/%3E%3Ccircle%20cx%3D%2217%22%20cy%3D%2217%22%20r%3D%222.5%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28180%20128%29%20rotate%28-6%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%228.5%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%226%22%20stroke-opacity%3D%22.5%22/%3E%3Cpath%20d%3D%22M14%2010c-.4-.8-1.1-1.2-2-1.2-1.2%200-2%20.6-2%201.5%200%202.2%204.2%201%204.2%203.3%200%20.9-.9%201.6-2.2%201.6-1%200-1.8-.5-2.2-1.3M12%207.6v8.8%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2830%20214%29%20rotate%28-4%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M12%202.8%2019.5%205.6v5.6c0%204.6-3.2%208.4-7.5%2010-4.3-1.6-7.5-5.4-7.5-10V5.6z%22/%3E%3Cpath%20d%3D%22m8.8%2012%202.2%202.2%204.4-4.4%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28128%20218%29%20rotate%285%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%222.5%22%20y%3D%225.5%22%20width%3D%2219%22%20height%3D%2213%22%20rx%3D%222.2%22/%3E%3Cpath%20d%3D%22M2.5%209.5h19M6%2015h4%22/%3E%3Crect%20x%3D%2214%22%20y%3D%2213%22%20width%3D%224%22%20height%3D%223%22%20rx%3D%22.6%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28230%20212%29%20rotate%2810%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%223.5%22%20y%3D%225%22%20width%3D%2217%22%20height%3D%2216%22%20rx%3D%222%22/%3E%3Cpath%20d%3D%22M3.5%209.5h17M8%203v4M16%203v4%22/%3E%3Cpath%20d%3D%22m9%2015%202%202%204-4%22/%3E%3C/g%3E%3Cpath%20transform%3D%22translate%2884%2062%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28182%2084%29%20scale%280.8%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2830%20128%29%20scale%280.9%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28232%20128%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28180%20182%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2884%20182%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3C/g%3E%3C/svg%3E");
+}
+
+html:not([data-theme="light"])[data-trilha="laranja"] {
+  --background: oklch(0.158 0.016 50);
+  --surface: oklch(0.205 0.02 50);
+  --surface-hi: oklch(0.248 0.024 50);
+  --card: oklch(0.205 0.02 50);
+  --popover: oklch(0.205 0.02 50);
+  --secondary: oklch(0.248 0.024 50);
+  --muted: oklch(0.248 0.024 50);
+  --accent: oklch(0.248 0.024 50);
+  --muted-foreground: oklch(0.66 0.02 50);
+  --subtle-foreground: oklch(0.5 0.02 50);
+  --border: oklch(0.29 0.03 50);
+  --input: oklch(0.29 0.03 50);
+  --primary: oklch(0.76 0.16 55);
+  --primary-foreground: oklch(0.23 0.06 45);
+  --primary-light: oklch(0.85 0.11 60);
+  --primary-dim: color-mix(in oklab, oklch(0.76 0.16 55) 14%, transparent);
+  --ring: oklch(0.76 0.16 55);
+  --luz-rastro-cor: #fb923c;
+  --luz-moedas-imagem: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22260%22%20height%3D%22260%22%20viewBox%3D%220%200%20260%20260%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23fb923c%22%20stroke-width%3D%221.35%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20transform%3D%22translate%2838%2040%29%20rotate%28-8%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cellipse%20cx%3D%2211.5%22%20cy%3D%2213%22%20rx%3D%228%22%20ry%3D%225.8%22/%3E%3Cpath%20d%3D%22M19.2%2011.2h1.6a.9.9%200%200%201%20.9.9v1.8a.9.9%200%200%201-.9.9h-1.6%22/%3E%3Cpath%20d%3D%22M8%2018v2.6M15%2018v2.6%22/%3E%3Cpath%20d%3D%22M8.2%207.8%209.6%204.6l2.6%202.6%22/%3E%3Cpath%20d%3D%22M9.8%209.6h3.6%22/%3E%3Cpath%20d%3D%22M3.6%2012.2c-1.4-.2-1.9-1.6-1-2.6%22/%3E%3Cpath%20d%3D%22M16.4%2010.9h.01%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28132%2034%29%20rotate%286%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M7%207h10v2.2c1.4.8%202.2%202.2%202.2%203.8v5.2a2.8%202.8%200%200%201-2.8%202.8H7.6a2.8%202.8%200%200%201-2.8-2.8V13c0-1.6.8-3%202.2-3.8z%22/%3E%3Crect%20x%3D%226.5%22%20y%3D%224%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2214.8%22%20r%3D%222.4%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28226%2052%29%20rotate%28-10%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M12%2021v-8%22/%3E%3Cpath%20d%3D%22M12%2013c0-3.5-2.5-6-6.5-6%200%203.5%202.5%206%206.5%206z%22/%3E%3Cpath%20d%3D%22M12%2011c0-3%202-5.2%205.8-5.2%200%203-2%205.2-5.8%205.2z%22/%3E%3Cpath%20d%3D%22M7%2021h10%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2882%20124%29%20rotate%288%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%224%22%20y%3D%2216%22%20width%3D%2210%22%20height%3D%223.5%22%20rx%3D%221.75%22/%3E%3Crect%20x%3D%225.5%22%20y%3D%2212%22%20width%3D%2210%22%20height%3D%223.5%22%20rx%3D%221.75%22/%3E%3Crect%20x%3D%224%22%20y%3D%228%22%20width%3D%2210%22%20height%3D%223.5%22%20rx%3D%221.75%22/%3E%3Ccircle%20cx%3D%2218.5%22%20cy%3D%226.5%22%20r%3D%222.5%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28180%20128%29%20rotate%28-6%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M3%203v18h18%22/%3E%3Cpath%20d%3D%22m7%2015%204-4%203%203%206-7%22/%3E%3Cpath%20d%3D%22M15.5%207H20v4.5%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2830%20214%29%20rotate%28-4%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%223.5%22%20y%3D%224%22%20width%3D%2217%22%20height%3D%2215%22%20rx%3D%222%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2211.5%22%20r%3D%223.5%22/%3E%3Cpath%20d%3D%22M12%208v1.2M12%2013.8V15M8.5%2011.5h1.2M14.3%2011.5h1.2M7%2019v2M17%2019v2%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28128%20218%29%20rotate%285%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M12%2021v-8%22/%3E%3Cpath%20d%3D%22M12%2013c0-3.5-2.5-6-6.5-6%200%203.5%202.5%206%206.5%206z%22/%3E%3Cpath%20d%3D%22M12%2011c0-3%202-5.2%205.8-5.2%200%203-2%205.2-5.8%205.2z%22/%3E%3Cpath%20d%3D%22M7%2021h10%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28230%20212%29%20rotate%2810%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cellipse%20cx%3D%2211.5%22%20cy%3D%2213%22%20rx%3D%228%22%20ry%3D%225.8%22/%3E%3Cpath%20d%3D%22M19.2%2011.2h1.6a.9.9%200%200%201%20.9.9v1.8a.9.9%200%200%201-.9.9h-1.6%22/%3E%3Cpath%20d%3D%22M8%2018v2.6M15%2018v2.6%22/%3E%3Cpath%20d%3D%22M8.2%207.8%209.6%204.6l2.6%202.6%22/%3E%3Cpath%20d%3D%22M9.8%209.6h3.6%22/%3E%3Cpath%20d%3D%22M3.6%2012.2c-1.4-.2-1.9-1.6-1-2.6%22/%3E%3Cpath%20d%3D%22M16.4%2010.9h.01%22/%3E%3C/g%3E%3Cpath%20transform%3D%22translate%2884%2062%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28182%2084%29%20scale%280.8%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2830%20128%29%20scale%280.9%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28232%20128%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28180%20182%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2884%20182%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3C/g%3E%3C/svg%3E");
+}
+
+html[data-theme="light"][data-trilha="laranja"] {
+  --base-fundo: color-mix(in srgb, #ffffff 93%, #c2410c);
+  --base-superficie: #ffffff;
+  --base-superficie-alta: color-mix(in srgb, #ffffff 89%, #c2410c);
+  --base-borda: color-mix(in srgb, #ffffff 80%, #c2410c);
+  --primary: #c2410c;
+  --primary-foreground: #ffffff;
+  --primary-light: #9a3412;
+  --primary-dim: color-mix(in srgb, #c2410c 10%, transparent);
+  --ring: #c2410c;
+  --luz-rastro-cor: #c2410c;
+  --luz-moedas-imagem: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22260%22%20height%3D%22260%22%20viewBox%3D%220%200%20260%20260%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23c2410c%22%20stroke-width%3D%221.35%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20transform%3D%22translate%2838%2040%29%20rotate%28-8%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cellipse%20cx%3D%2211.5%22%20cy%3D%2213%22%20rx%3D%228%22%20ry%3D%225.8%22/%3E%3Cpath%20d%3D%22M19.2%2011.2h1.6a.9.9%200%200%201%20.9.9v1.8a.9.9%200%200%201-.9.9h-1.6%22/%3E%3Cpath%20d%3D%22M8%2018v2.6M15%2018v2.6%22/%3E%3Cpath%20d%3D%22M8.2%207.8%209.6%204.6l2.6%202.6%22/%3E%3Cpath%20d%3D%22M9.8%209.6h3.6%22/%3E%3Cpath%20d%3D%22M3.6%2012.2c-1.4-.2-1.9-1.6-1-2.6%22/%3E%3Cpath%20d%3D%22M16.4%2010.9h.01%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28132%2034%29%20rotate%286%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M7%207h10v2.2c1.4.8%202.2%202.2%202.2%203.8v5.2a2.8%202.8%200%200%201-2.8%202.8H7.6a2.8%202.8%200%200%201-2.8-2.8V13c0-1.6.8-3%202.2-3.8z%22/%3E%3Crect%20x%3D%226.5%22%20y%3D%224%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2214.8%22%20r%3D%222.4%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28226%2052%29%20rotate%28-10%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M12%2021v-8%22/%3E%3Cpath%20d%3D%22M12%2013c0-3.5-2.5-6-6.5-6%200%203.5%202.5%206%206.5%206z%22/%3E%3Cpath%20d%3D%22M12%2011c0-3%202-5.2%205.8-5.2%200%203-2%205.2-5.8%205.2z%22/%3E%3Cpath%20d%3D%22M7%2021h10%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2882%20124%29%20rotate%288%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%224%22%20y%3D%2216%22%20width%3D%2210%22%20height%3D%223.5%22%20rx%3D%221.75%22/%3E%3Crect%20x%3D%225.5%22%20y%3D%2212%22%20width%3D%2210%22%20height%3D%223.5%22%20rx%3D%221.75%22/%3E%3Crect%20x%3D%224%22%20y%3D%228%22%20width%3D%2210%22%20height%3D%223.5%22%20rx%3D%221.75%22/%3E%3Ccircle%20cx%3D%2218.5%22%20cy%3D%226.5%22%20r%3D%222.5%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28180%20128%29%20rotate%28-6%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M3%203v18h18%22/%3E%3Cpath%20d%3D%22m7%2015%204-4%203%203%206-7%22/%3E%3Cpath%20d%3D%22M15.5%207H20v4.5%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2830%20214%29%20rotate%28-4%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%223.5%22%20y%3D%224%22%20width%3D%2217%22%20height%3D%2215%22%20rx%3D%222%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2211.5%22%20r%3D%223.5%22/%3E%3Cpath%20d%3D%22M12%208v1.2M12%2013.8V15M8.5%2011.5h1.2M14.3%2011.5h1.2M7%2019v2M17%2019v2%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28128%20218%29%20rotate%285%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M12%2021v-8%22/%3E%3Cpath%20d%3D%22M12%2013c0-3.5-2.5-6-6.5-6%200%203.5%202.5%206%206.5%206z%22/%3E%3Cpath%20d%3D%22M12%2011c0-3%202-5.2%205.8-5.2%200%203-2%205.2-5.8%205.2z%22/%3E%3Cpath%20d%3D%22M7%2021h10%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28230%20212%29%20rotate%2810%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cellipse%20cx%3D%2211.5%22%20cy%3D%2213%22%20rx%3D%228%22%20ry%3D%225.8%22/%3E%3Cpath%20d%3D%22M19.2%2011.2h1.6a.9.9%200%200%201%20.9.9v1.8a.9.9%200%200%201-.9.9h-1.6%22/%3E%3Cpath%20d%3D%22M8%2018v2.6M15%2018v2.6%22/%3E%3Cpath%20d%3D%22M8.2%207.8%209.6%204.6l2.6%202.6%22/%3E%3Cpath%20d%3D%22M9.8%209.6h3.6%22/%3E%3Cpath%20d%3D%22M3.6%2012.2c-1.4-.2-1.9-1.6-1-2.6%22/%3E%3Cpath%20d%3D%22M16.4%2010.9h.01%22/%3E%3C/g%3E%3Cpath%20transform%3D%22translate%2884%2062%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28182%2084%29%20scale%280.8%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2830%20128%29%20scale%280.9%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28232%20128%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28180%20182%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2884%20182%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3C/g%3E%3C/svg%3E");
+}
+
+html:not([data-theme="light"])[data-trilha="violeta"] {
+  --background: oklch(0.158 0.016 292);
+  --surface: oklch(0.205 0.02 292);
+  --surface-hi: oklch(0.248 0.024 292);
+  --card: oklch(0.205 0.02 292);
+  --popover: oklch(0.205 0.02 292);
+  --secondary: oklch(0.248 0.024 292);
+  --muted: oklch(0.248 0.024 292);
+  --accent: oklch(0.248 0.024 292);
+  --muted-foreground: oklch(0.66 0.02 292);
+  --subtle-foreground: oklch(0.5 0.02 292);
+  --border: oklch(0.29 0.03 292);
+  --input: oklch(0.29 0.03 292);
+  --primary: oklch(0.72 0.16 293);
+  --primary-foreground: oklch(0.21 0.06 295);
+  --primary-light: oklch(0.82 0.11 293);
+  --primary-dim: color-mix(in oklab, oklch(0.72 0.16 293) 14%, transparent);
+  --ring: oklch(0.72 0.16 293);
+  --luz-rastro-cor: #a78bfa;
+  --luz-moedas-imagem: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22260%22%20height%3D%22260%22%20viewBox%3D%220%200%20260%20260%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23a78bfa%22%20stroke-width%3D%221.35%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20transform%3D%22translate%2838%2040%29%20rotate%28-8%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Ccircle%20cx%3D%225%22%20cy%3D%2217.5%22%20r%3D%221.8%22/%3E%3Ccircle%20cx%3D%2210.6%22%20cy%3D%2215.6%22%20r%3D%223%22/%3E%3Ccircle%20cx%3D%2217.4%22%20cy%3D%2212.6%22%20r%3D%224.6%22/%3E%3Cpath%20d%3D%22M2%2021h20%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28132%2034%29%20rotate%286%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M12%2021v-8.5M12%2014.5%208.6%2011.2M12%2013l3.6-3.2M8.5%2021h7%22/%3E%3Ccircle%20cx%3D%227.6%22%20cy%3D%229%22%20r%3D%222.6%22/%3E%3Ccircle%20cx%3D%2216.4%22%20cy%3D%228%22%20r%3D%222.6%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%225%22%20r%3D%222.6%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28226%2052%29%20rotate%28-10%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M3%203v18h18%22/%3E%3Cpath%20d%3D%22M6%2018c5%200%209-3%2013-12%22/%3E%3Cpath%20d%3D%22M15.6%206.2%2019%206l.4%203.4%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2882%20124%29%20rotate%288%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M6.5%203h11M6.5%2021h11M7.5%203c0%204.5%204.5%205.5%204.5%209s-4.5%204.5-4.5%209M16.5%203c0%204.5-4.5%205.5-4.5%209s4.5%204.5%204.5%209%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28180%20128%29%20rotate%28-6%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M3.5%2020.5h4v-4h4v-4h4v-4h4%22/%3E%3Ccircle%20cx%3D%2218%22%20cy%3D%224.5%22%20r%3D%222%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2830%20214%29%20rotate%28-4%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M19%205%205%2019%22/%3E%3Ccircle%20cx%3D%227%22%20cy%3D%227%22%20r%3D%222.5%22/%3E%3Ccircle%20cx%3D%2217%22%20cy%3D%2217%22%20r%3D%222.5%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28128%20218%29%20rotate%285%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Ccircle%20cx%3D%225%22%20cy%3D%2217.5%22%20r%3D%221.8%22/%3E%3Ccircle%20cx%3D%2210.6%22%20cy%3D%2215.6%22%20r%3D%223%22/%3E%3Ccircle%20cx%3D%2217.4%22%20cy%3D%2212.6%22%20r%3D%224.6%22/%3E%3Cpath%20d%3D%22M2%2021h20%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28230%20212%29%20rotate%2810%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M12%2021v-8.5M12%2014.5%208.6%2011.2M12%2013l3.6-3.2M8.5%2021h7%22/%3E%3Ccircle%20cx%3D%227.6%22%20cy%3D%229%22%20r%3D%222.6%22/%3E%3Ccircle%20cx%3D%2216.4%22%20cy%3D%228%22%20r%3D%222.6%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%225%22%20r%3D%222.6%22/%3E%3C/g%3E%3Cpath%20transform%3D%22translate%2884%2062%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28182%2084%29%20scale%280.8%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2830%20128%29%20scale%280.9%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28232%20128%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28180%20182%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2884%20182%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3C/g%3E%3C/svg%3E");
+}
+
+html[data-theme="light"][data-trilha="violeta"] {
+  --base-fundo: color-mix(in srgb, #ffffff 93%, #6d28d9);
+  --base-superficie: #ffffff;
+  --base-superficie-alta: color-mix(in srgb, #ffffff 89%, #6d28d9);
+  --base-borda: color-mix(in srgb, #ffffff 80%, #6d28d9);
+  --primary: #6d28d9;
+  --primary-foreground: #ffffff;
+  --primary-light: #5b21b6;
+  --primary-dim: color-mix(in srgb, #6d28d9 10%, transparent);
+  --ring: #6d28d9;
+  --luz-rastro-cor: #6d28d9;
+  --luz-moedas-imagem: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22260%22%20height%3D%22260%22%20viewBox%3D%220%200%20260%20260%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%236d28d9%22%20stroke-width%3D%221.35%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20transform%3D%22translate%2838%2040%29%20rotate%28-8%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Ccircle%20cx%3D%225%22%20cy%3D%2217.5%22%20r%3D%221.8%22/%3E%3Ccircle%20cx%3D%2210.6%22%20cy%3D%2215.6%22%20r%3D%223%22/%3E%3Ccircle%20cx%3D%2217.4%22%20cy%3D%2212.6%22%20r%3D%224.6%22/%3E%3Cpath%20d%3D%22M2%2021h20%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28132%2034%29%20rotate%286%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M12%2021v-8.5M12%2014.5%208.6%2011.2M12%2013l3.6-3.2M8.5%2021h7%22/%3E%3Ccircle%20cx%3D%227.6%22%20cy%3D%229%22%20r%3D%222.6%22/%3E%3Ccircle%20cx%3D%2216.4%22%20cy%3D%228%22%20r%3D%222.6%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%225%22%20r%3D%222.6%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28226%2052%29%20rotate%28-10%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M3%203v18h18%22/%3E%3Cpath%20d%3D%22M6%2018c5%200%209-3%2013-12%22/%3E%3Cpath%20d%3D%22M15.6%206.2%2019%206l.4%203.4%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2882%20124%29%20rotate%288%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M6.5%203h11M6.5%2021h11M7.5%203c0%204.5%204.5%205.5%204.5%209s-4.5%204.5-4.5%209M16.5%203c0%204.5-4.5%205.5-4.5%209s4.5%204.5%204.5%209%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28180%20128%29%20rotate%28-6%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M3.5%2020.5h4v-4h4v-4h4v-4h4%22/%3E%3Ccircle%20cx%3D%2218%22%20cy%3D%224.5%22%20r%3D%222%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2830%20214%29%20rotate%28-4%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M19%205%205%2019%22/%3E%3Ccircle%20cx%3D%227%22%20cy%3D%227%22%20r%3D%222.5%22/%3E%3Ccircle%20cx%3D%2217%22%20cy%3D%2217%22%20r%3D%222.5%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28128%20218%29%20rotate%285%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Ccircle%20cx%3D%225%22%20cy%3D%2217.5%22%20r%3D%221.8%22/%3E%3Ccircle%20cx%3D%2210.6%22%20cy%3D%2215.6%22%20r%3D%223%22/%3E%3Ccircle%20cx%3D%2217.4%22%20cy%3D%2212.6%22%20r%3D%224.6%22/%3E%3Cpath%20d%3D%22M2%2021h20%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28230%20212%29%20rotate%2810%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M12%2021v-8.5M12%2014.5%208.6%2011.2M12%2013l3.6-3.2M8.5%2021h7%22/%3E%3Ccircle%20cx%3D%227.6%22%20cy%3D%229%22%20r%3D%222.6%22/%3E%3Ccircle%20cx%3D%2216.4%22%20cy%3D%228%22%20r%3D%222.6%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%225%22%20r%3D%222.6%22/%3E%3C/g%3E%3Cpath%20transform%3D%22translate%2884%2062%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28182%2084%29%20scale%280.8%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2830%20128%29%20scale%280.9%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28232%20128%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28180%20182%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2884%20182%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3C/g%3E%3C/svg%3E");
+}
+
+html:not([data-theme="light"])[data-trilha="rosa"] {
+  --background: oklch(0.158 0.016 12);
+  --surface: oklch(0.205 0.02 12);
+  --surface-hi: oklch(0.248 0.024 12);
+  --card: oklch(0.205 0.02 12);
+  --popover: oklch(0.205 0.02 12);
+  --secondary: oklch(0.248 0.024 12);
+  --muted: oklch(0.248 0.024 12);
+  --accent: oklch(0.248 0.024 12);
+  --muted-foreground: oklch(0.66 0.02 12);
+  --subtle-foreground: oklch(0.5 0.02 12);
+  --border: oklch(0.29 0.03 12);
+  --input: oklch(0.29 0.03 12);
+  --primary: oklch(0.73 0.16 12);
+  --primary-foreground: oklch(0.22 0.06 15);
+  --primary-light: oklch(0.83 0.1 12);
+  --primary-dim: color-mix(in oklab, oklch(0.73 0.16 12) 14%, transparent);
+  --ring: oklch(0.73 0.16 12);
+  --luz-rastro-cor: #fb7185;
+  --luz-moedas-imagem: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22260%22%20height%3D%22260%22%20viewBox%3D%220%200%20260%20260%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23fb7185%22%20stroke-width%3D%221.35%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20transform%3D%22translate%2838%2040%29%20rotate%28-8%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M12%202.8%2019.5%205.6v5.6c0%204.6-3.2%208.4-7.5%2010-4.3-1.6-7.5-5.4-7.5-10V5.6z%22/%3E%3Cpath%20d%3D%22m8.8%2012%202.2%202.2%204.4-4.4%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28132%2034%29%20rotate%286%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%225%22%20y%3D%2210.5%22%20width%3D%2214%22%20height%3D%2210.5%22%20rx%3D%222%22/%3E%3Cpath%20d%3D%22M8%2010.5V7.5a4%204%200%200%201%208%200v3M12%2015v2.5%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28226%2052%29%20rotate%28-10%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Ccircle%20cx%3D%227.5%22%20cy%3D%2215.5%22%20r%3D%224%22/%3E%3Cpath%20d%3D%22M10.5%2012.5%2020%203M16%207l2.5%202.5M18.5%204.5%2021%207%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2882%20124%29%20rotate%288%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M2.5%2012s3.5-6.5%209.5-6.5%209.5%206.5%209.5%206.5-3.5%206.5-9.5%206.5S2.5%2012%202.5%2012z%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%223%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28180%20128%29%20rotate%28-6%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%226.5%22%20y%3D%222.5%22%20width%3D%2211%22%20height%3D%2219%22%20rx%3D%222.2%22/%3E%3Cpath%20d%3D%22M10.5%2018.5h3M12%207v4.5M12%2014h.01%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2830%20214%29%20rotate%28-4%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%223.5%22%20y%3D%224%22%20width%3D%2217%22%20height%3D%2215%22%20rx%3D%222%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2211.5%22%20r%3D%223.5%22/%3E%3Cpath%20d%3D%22M12%208v1.2M12%2013.8V15M8.5%2011.5h1.2M14.3%2011.5h1.2M7%2019v2M17%2019v2%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28128%20218%29%20rotate%285%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M12%202.8%2019.5%205.6v5.6c0%204.6-3.2%208.4-7.5%2010-4.3-1.6-7.5-5.4-7.5-10V5.6z%22/%3E%3Cpath%20d%3D%22m8.8%2012%202.2%202.2%204.4-4.4%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28230%20212%29%20rotate%2810%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%225%22%20y%3D%2210.5%22%20width%3D%2214%22%20height%3D%2210.5%22%20rx%3D%222%22/%3E%3Cpath%20d%3D%22M8%2010.5V7.5a4%204%200%200%201%208%200v3M12%2015v2.5%22/%3E%3C/g%3E%3Cpath%20transform%3D%22translate%2884%2062%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28182%2084%29%20scale%280.8%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2830%20128%29%20scale%280.9%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28232%20128%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28180%20182%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2884%20182%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3C/g%3E%3C/svg%3E");
+}
+
+html[data-theme="light"][data-trilha="rosa"] {
+  --base-fundo: color-mix(in srgb, #ffffff 93%, #be123c);
+  --base-superficie: #ffffff;
+  --base-superficie-alta: color-mix(in srgb, #ffffff 89%, #be123c);
+  --base-borda: color-mix(in srgb, #ffffff 80%, #be123c);
+  --primary: #be123c;
+  --primary-foreground: #ffffff;
+  --primary-light: #9f1239;
+  --primary-dim: color-mix(in srgb, #be123c 10%, transparent);
+  --ring: #be123c;
+  --luz-rastro-cor: #be123c;
+  --luz-moedas-imagem: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22260%22%20height%3D%22260%22%20viewBox%3D%220%200%20260%20260%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23be123c%22%20stroke-width%3D%221.35%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20transform%3D%22translate%2838%2040%29%20rotate%28-8%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M12%202.8%2019.5%205.6v5.6c0%204.6-3.2%208.4-7.5%2010-4.3-1.6-7.5-5.4-7.5-10V5.6z%22/%3E%3Cpath%20d%3D%22m8.8%2012%202.2%202.2%204.4-4.4%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28132%2034%29%20rotate%286%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%225%22%20y%3D%2210.5%22%20width%3D%2214%22%20height%3D%2210.5%22%20rx%3D%222%22/%3E%3Cpath%20d%3D%22M8%2010.5V7.5a4%204%200%200%201%208%200v3M12%2015v2.5%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28226%2052%29%20rotate%28-10%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Ccircle%20cx%3D%227.5%22%20cy%3D%2215.5%22%20r%3D%224%22/%3E%3Cpath%20d%3D%22M10.5%2012.5%2020%203M16%207l2.5%202.5M18.5%204.5%2021%207%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2882%20124%29%20rotate%288%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M2.5%2012s3.5-6.5%209.5-6.5%209.5%206.5%209.5%206.5-3.5%206.5-9.5%206.5S2.5%2012%202.5%2012z%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%223%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28180%20128%29%20rotate%28-6%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%226.5%22%20y%3D%222.5%22%20width%3D%2211%22%20height%3D%2219%22%20rx%3D%222.2%22/%3E%3Cpath%20d%3D%22M10.5%2018.5h3M12%207v4.5M12%2014h.01%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2830%20214%29%20rotate%28-4%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%223.5%22%20y%3D%224%22%20width%3D%2217%22%20height%3D%2215%22%20rx%3D%222%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2211.5%22%20r%3D%223.5%22/%3E%3Cpath%20d%3D%22M12%208v1.2M12%2013.8V15M8.5%2011.5h1.2M14.3%2011.5h1.2M7%2019v2M17%2019v2%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28128%20218%29%20rotate%285%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Cpath%20d%3D%22M12%202.8%2019.5%205.6v5.6c0%204.6-3.2%208.4-7.5%2010-4.3-1.6-7.5-5.4-7.5-10V5.6z%22/%3E%3Cpath%20d%3D%22m8.8%2012%202.2%202.2%204.4-4.4%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28230%20212%29%20rotate%2810%29%20scale%281.3%29%20translate%28-12%20-12%29%22%3E%3Crect%20x%3D%225%22%20y%3D%2210.5%22%20width%3D%2214%22%20height%3D%2210.5%22%20rx%3D%222%22/%3E%3Cpath%20d%3D%22M8%2010.5V7.5a4%204%200%200%201%208%200v3M12%2015v2.5%22/%3E%3C/g%3E%3Cpath%20transform%3D%22translate%2884%2062%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28182%2084%29%20scale%280.8%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2830%20128%29%20scale%280.9%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28232%20128%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%28180%20182%29%20scale%281%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3Cpath%20transform%3D%22translate%2884%20182%29%20scale%280.7%29%22%20d%3D%22M0%20-4v8M-4%200h8%22%20stroke-opacity%3D%22.55%22/%3E%3C/g%3E%3C/svg%3E");
+}
+
+html[data-trilha] .marca-fixa {
+  --background: oklch(0.164 0.006 285);
+  --surface: oklch(0.213 0.006 285);
+  --surface-hi: oklch(0.253 0.006 285);
+  --card: oklch(0.213 0.006 285);
+  --card-foreground: oklch(0.972 0.002 95);
+  --popover: oklch(0.213 0.006 285);
+  --popover-foreground: oklch(0.972 0.002 95);
+  --primary: oklch(0.817 0.168 161.8);
+  --primary-foreground: oklch(0.219 0.038 167.9);
+  --primary-light: oklch(0.888 0.13 164);
+  --primary-dim: oklch(0.817 0.168 161.8 / 0.14);
+  --secondary: oklch(0.253 0.006 285);
+  --secondary-foreground: oklch(0.972 0.002 95);
+  --muted: oklch(0.253 0.006 285);
+  --muted-foreground: oklch(0.626 0.008 285);
+  --subtle-foreground: oklch(0.472 0.008 285);
+  --accent: oklch(0.253 0.006 285);
+  --accent-foreground: oklch(0.972 0.002 95);
+  --border: oklch(0.283 0.007 285);
+  --input: oklch(0.283 0.007 285);
+  --ring: oklch(0.817 0.168 161.8);
+  --color-primary: var(--primary);
+  --luz-rastro-cor: #34d399;
+}
+
+html[data-theme="light"][data-trilha] .marca-fixa {
+  --base-fundo: initial;
+  --base-superficie: initial;
+  --base-superficie-alta: initial;
+  --base-borda: initial;
+  --cor-destaque: initial;
+  --cor-destaque-forte: initial;
+  --cor-destaque-suave: initial;
+  --background: color-mix(in srgb, var(--base-fundo, #f5f7f6) var(--mistura-luz), #a9b3ae);
+  --surface: color-mix(in srgb, var(--base-superficie, #ffffff) var(--mistura-luz), #b7c0bb);
+  --surface-hi: color-mix(in srgb, var(--base-superficie-alta, #eef2f0) var(--mistura-luz), #a3ada8);
+  --card: color-mix(in srgb, var(--base-superficie, #ffffff) var(--mistura-luz), #b7c0bb);
+  --card-foreground: #121418;
+  --popover: color-mix(in srgb, var(--base-superficie, #ffffff) var(--mistura-luz), #b7c0bb);
+  --popover-foreground: #121418;
+  --primary: var(--cor-destaque, #0a8f60);
+  --primary-foreground: #ffffff;
+  --primary-light: var(--cor-destaque-forte, #06734c);
+  --primary-dim: var(--cor-destaque-suave, rgb(10 143 96 / 0.1));
+  --secondary: color-mix(in srgb, var(--base-superficie-alta, #eef2f0) var(--mistura-luz), #a3ada8);
+  --secondary-foreground: #121418;
+  --muted: color-mix(in srgb, var(--base-superficie-alta, #eef2f0) var(--mistura-luz), #a3ada8);
+  --muted-foreground: #525862;
+  --subtle-foreground: #737a85;
+  --accent: color-mix(in srgb, var(--base-superficie-alta, #eef2f0) var(--mistura-luz), #a3ada8);
+  --accent-foreground: #121418;
+  --border: color-mix(in srgb, var(--base-borda, #dde3e0) var(--mistura-luz), #8f9a95);
+  --input: color-mix(in srgb, var(--base-borda, #dde3e0) var(--mistura-luz), #8f9a95);
+  --ring: var(--cor-destaque, #0a8f60);
+  --luz-rastro-cor: #0a8f60;
+}
+
+
+@layer base {
+  html,
+  body {
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
+  body {
+    touch-action: pan-y pinch-zoom;
+  }
+
+  :where(.grid) > * {
+    min-width: 0;
+  }
+
+  :where(p, h1, h2, h3, h4, li, dd, td, th, label, figcaption, blockquote) {
+    overflow-wrap: anywhere;
+  }
+
+  :where(table) {
+    max-width: 100%;
+  }
+
+  :where(pre) {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
